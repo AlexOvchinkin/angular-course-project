@@ -1,0 +1,9 @@
+<app-algorithm-translate
+        *ngIf="currentTestAlgorithm.algorithm == ALGORITHM_TRANSLATE"
+        [algorithm]="currentTestAlgorithm">
+</app-algorithm-translate>
+
+<app-algorithm-selection
+        *ngIf="currentTestAlgorithm.algorithm == ALGORITHM_SELECTION"
+        [algorithm]="currentTestAlgorithm">
+</app-algorithm-selection>

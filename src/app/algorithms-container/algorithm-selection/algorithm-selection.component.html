@@ -1,0 +1,30 @@
+<section class="selection">
+
+    <h2 class="selection__title-main">ПОДБОР</h2>
+    <h4 class="selection__title-descr">[ по словам ]</h4>
+
+    <ul class="selection__checklist">
+        <li *ngFor="let letter of checkLetters; let i = index"
+            [class]="'selection__check-letter selection-hidden'"
+            [ngClass]="'letter-' + i">
+            {{ letter }}
+        </li>
+    </ul>
+
+    <div class="selection__sound-btn">ПОСЛУШАТЬ ЕЩЕ РАЗОК</div>
+
+    <ul class="selection__pick-list" (click)="clickPickList($event.target)">
+        <li *ngFor="let letter of pickLetters"
+            class="selection__pick-letter">
+            {{ letter }}
+        </li>
+    </ul>
+
+    <p class="selection__description">
+        <sup>*&nbsp;</sup>
+        собери слово, выбирая буквы в правильном порядке
+    </p>
+    <!--<audio src="../src/sound/{{ enWord }}.mp3" id="main-sound" data-enWord="{{ enWord }}"  autoplay></audio>
+    <audio src="../src/sound/game_sound_correct.mp3" id="correct-sound"></audio>
+    <audio src="../src/sound/game-sound-wrong.mp3" id="wrong-sound"></audio>-->
+</section>
