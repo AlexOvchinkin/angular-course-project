@@ -5,7 +5,7 @@ import {Component, OnInit, Input} from '@angular/core';
     templateUrl: './algorithm-selection.component.html',
     styleUrls: ['./algorithm-selection.component.css']
 })
-export class AlgorithmSelectionComponent implements OnInit {
+export class AlgorithmSelectionComponent implements OnInit  {
 
     @Input() algorithm;
 
@@ -32,15 +32,17 @@ export class AlgorithmSelectionComponent implements OnInit {
             // если нажатая и текущая буква совпадают
             if (target.innerText == this.checkLetters[this.currentLetter]) {
 
-                if (this.showRightAnswer()) {
+                if (this.showRightAnswer(target)) {
                     // счетчик букв увеличим
                     this.currentLetter++;
 
                     if (this.currentLetter == this.checkLetters.length) {
-                        //alert('The end !');
-                        return;
+                        setTimeout(() => {
+                            alert('The end !')
+                        }, 100);
+
                         // тут нужно будет отсылать "наверх" сообщение
-                        // об окончании данного теста и рузультат: правильно / неправильно
+                        // об окончании данного теста и результат: правильно / неправильно
                     }
 
                     // словосочетание может состоять из нескольких слов
@@ -57,14 +59,26 @@ export class AlgorithmSelectionComponent implements OnInit {
         }
     }
 
+    // возвращает классы для верхнего набора букв, для каждой буквы
+    getCheckLetterClasses(num: number) {
+        let classes: string = `selection__check-letter selection-hidden letter-${num}`;
+
+        if (!this.checkLetters[num].trim()) {
+            classes += ' selection__empty';
+        }
+
+        return classes;
+    }
+
     // показывает правильный ответ
-    private showRightAnswer(): boolean {
+    private showRightAnswer(pickLetter: HTMLElement): boolean {
         // найдем текущую букву
-        let letter: HTMLLIElement = document.body.querySelector('.letter-' + this.currentLetter) as HTMLLIElement;
+        let letter: HTMLLIElement = document.body.querySelector(`.letter-${this.currentLetter}`) as HTMLLIElement;
 
         if (letter) {
             // покажем ее
             letter.classList.remove('selection-hidden');
+            pickLetter.style.display = 'none';
             return true;
         }
 

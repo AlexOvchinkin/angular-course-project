@@ -5,8 +5,8 @@
 
     <ul class="selection__checklist">
         <li *ngFor="let letter of checkLetters; let i = index"
-            [class]="'selection__check-letter selection-hidden'"
-            [ngClass]="'letter-' + i">
+            [class]="getCheckLetterClasses(i)">
+
             {{ letter }}
         </li>
     </ul>
